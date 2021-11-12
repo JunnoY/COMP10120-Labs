@@ -1,0 +1,114 @@
+<!DOCTYPE html>	
+<html>
+<body>
+	<h1 style="color:darkorange;"> Classic Calculator</h1>
+
+
+</body>
+<head>
+	<style type="text/css">
+		button{
+			background-color: blueviolet;
+			border-radius: 28px;
+			border: 6px solid gold;
+			display: inline-block;
+			cursor: pointer;
+			color: ghostwhite;
+			font-family: sans-serif ;
+			font-size: 30px;
+			padding: 7px, 10px;
+			text-decoration-color: black;
+			text-shadow: 0px 1px 0px gray;
+			width: 50px;
+			text-align: center;
+		}
+			button:hover{
+				background-color: orange;
+			}
+			body
+			{   background-color: skyblue;
+				border: 1px blueviolet;
+				width: 300px;}
+			
+	</style>
+
+	<title> Javascript Calculator</title>
+	<script>
+		document.write("<input type='text' id='theDisplay'><br>");
+		numbers = ["7","8","9","4","5","6","1","2","3", ".", "0" ,"="]
+		ops = ["+", "-", "*", "/"]
+		for (var i=0; i<numbers.length; i++)
+		{	
+			if(numbers[i]=="=")
+			{
+				document.write("<button onclick = 'doCalc(&quot;" + numbers[i] + "&quot;)'>" + numbers[i] + "</button>");
+
+			}
+			
+			else
+			{
+				document.write("<button onclick = 'updateDisplay(&quot;" + numbers[i] + "&quot;)'>" + numbers[i] + "</button>");
+			}
+			
+
+			if (i%3==2) //perform break every three values
+			{
+				op = ops.pop();
+				document.write("<button onclick = 'doCalc(&quot;" + op + "&quot;)'>" + op + "</button>");
+				document.write("<br>");
+			}
+		}
+		document.write("<input type='text' id='preValue' value = '0'><br>");
+		document.write("<input type='text' id='preOp' value='+'><br>");
+
+		function updateDisplay(num)
+		{
+			curVal = document.getElementById('theDisplay').value;
+			curVal += num;
+			document.getElementById('theDisplay').value = curVal;
+		}
+		
+		function doCalc(op)
+		{
+			preValue = Number(document.getElementById("preValue").value);
+			preOp = document.getElementById("preOp").value;
+			curValue = Number(document.getElementById("theDisplay").value);
+
+			if(preOp== "+")
+			{
+				newValue = preValue + curValue;
+			}
+
+
+			if(preOp== "-")
+			{
+				newValue = preValue - curValue;
+			}
+
+
+			if(preOp== "*")
+			{
+				newValue = preValue * curValue;
+			}
+
+
+			if(preOp== "/")
+			{
+				newValue = preValue / curValue;
+			}
+			document.getElementById("theDisplay").value = "";
+			document.getElementById("preOp").value = op;
+			document.getElementById("preValue").value = newValue;
+
+			if (op == "=")
+			{
+				document.getElementById("theDisplay").value = newValue;
+			}
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

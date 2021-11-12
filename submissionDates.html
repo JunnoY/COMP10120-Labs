@@ -4,13 +4,64 @@
 <head>
 	<meta charset="utf-8">
 	<title>My Submission Dates</title>
+	
 </head>
 	<!-- additional information regarding the character set in use. -->
 <body style="background-color: #E5B8B7;">
 	<h1> More information will appear here</h1>
 	<a href="comp10120.html">Home</a>
 	<a href="moduleTutors.html">Module Tutors</a>
+	<script type="text/javascript">function updateDays(){
+		alert("it works!")
+	today = new Date();
+	for (i=0; i<3; i++)
+		{
+			submission = document.getElementById("date[" + i + "]").innerHTML;
+			dd=submission.substring(0,2);
+			mm=submission.substring(3,5);
+			yyyy=submission.substring(6,10);
+			submissionDate = new Date(mm + "/" + dd + "/" + yyyy);
+			diffTime = Math.abs(submissionDate.getTime()-today.getTime());
+			diffDays = Math.ceil(diffTime/(1000*60*60*24));
+			if (submissionDate.getTime()>= today.getTime())
+				days = " days";
+			else
+				days = " days overdue";
+			document.getElementById("dueDays[" + i + "]").innerHTML = diffDays+days
+			
+		}
+	}
+	</script>
+	
 	<img src="image/deadline.jpg" alt="A deadline Image" width="104" height="="142>
 
+
 </body>
+
+<main>
+	<h1>Submission Dates</h1>
+	<p>Information about submission dates will appear here.</p>
+	<table border = "6">
+		<tr><th>Work Due</th><th>Due Date</th><th>Due in</th></tr>
+		  <tr>
+		  	<td>Reading Week Report</td>
+		  	<td id= "date[0]">03/05/2019</td>
+		  	<td id="dueDays[0]">unknown</td>
+		  </tr>
+		  <tr>
+		  	<td>Christmas Reflective Notes</td>
+		  	<td id= "date[1]">01/02/2020</td>
+		  	<td id="dueDays[1]">unknown</td>
+		  </tr>
+		  <tr>
+		  	<td>PHP course project</td>
+		  	<td id= "date[2]">20/01/2021</td>
+		  	<td id="dueDays[2]">unknown</td>
+		  </tr>
+	</table>
+	<button onclick="updateDays()">Update Due Days</button>
+
+
+
+
 </html>
